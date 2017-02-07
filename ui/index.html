@@ -2,25 +2,34 @@
 <html>
     <head>
         <link href="/ui/style.css" rel="stylesheet" />
-            <script type="text/javascript">
-var top='p3'
-function toTop(newTop)
-{
-domTop=document.getElementById(top).style
-domNew=document.getElementById(newTop).style
-domTop.zIndex="0"
-domNew.zIndex="10"
-top=newTop
-}
-</script>
 <style type="text/css">
-.para1{position:absolute;top:10;left:120;z-index:0;
-border:solid;padding:80; width:300;background-color:aqua;}
-.para2{position:absolute;top:50;left:150;z-index:0;
-border:solid;padding:80; width:300;background-color:yellow; }
-.para3{position:absolute;top:100;left:180;z-index:0;
-border:solid;padding:80; width:300;background-color:red; }
-</style>
+                .layer1
+                {
+                    
+                    
+                    position:absolute;
+                    top:100px;
+                    left:200px;
+                    z-index:1;
+                }
+            .layer2
+                {
+                    
+                    position:absolute;
+                    top:120px;
+                    left:220px;
+                    z-index:2;
+                }
+            .layer3
+                {
+                   
+                    position:absolute;
+                    top:140px;
+                    left:240px;
+                    z-index:3;
+                }
+            </style>
+
     </head>
 
     <body>
@@ -33,13 +42,27 @@ border:solid;padding:80; width:300;background-color:red; }
                 Happy Rose Day Bacha.. 
         </div>
         <div class="center">
-            <img src="http://www.india.com/wp-content/uploads/2016/02/rose-day.jpg" />
-            <p class="para1" id="p1" onmouseover="toTop('p1')"
-onmouseout="toTop('p2')"> Frame One </p>
-<p class="para3" id="p3" onmouseover="toTop('p3')"
-onmouseout="toTop('p2')"> Frame Two </p>
-<p class="para2" id="p2" onmouseover="toTop('p2')"
-onmouseout="toTop('p2')"> Frame Three </p>
+           
+              <script type=text/javascript>
+            var topLayer="layer3";
+            var origpos;
+            //function to place the choosen layer on the top
+            function mover(toTop,pos)
+                {
+                    document.getElementById(toTop).style.zIndex="4";
+                    topLayer=toTop;
+                    origpos=pos;
+                }
+            //function to place the choosen layer back to it's original place
+            function moveBack()
+                {
+                    document.getElementById(topLayer).style.zIndex=origpos;
+                }
+        </script>
+        <p class=layer1 id=layer1 onMouseOver=mover('layer1','1'); onMouseOut=moveBack()> <img src="http://www.india.com/wp-content/uploads/2016/02/rose-day.jpg" /></p>
+        <p class=layer2 id=layer2 onMouseOver=mover('layer2','2'); onMouseOut=moveBack()>This is the middle layer</p>
+        <p class=layer3 id=layer3 onMouseOver=mover('layer3','3'); onMouseOut=moveBack()>This is the first layer</p>
+         
         </div>
         <script type="text/javascript" src="/ui/main.js">
         </script>
